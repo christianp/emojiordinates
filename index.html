@@ -130,13 +130,17 @@
             var emojiInput = document.getElementById('emoji');
             var output = document.getElementById('output');
 
+            var loadedHash = false;
+
             function update() {
                 var lat = parseFloat(latInput.value);
                 var long = parseFloat(longInput.value);
                 var rep = encode(lat,long);
                 output.innerHTML = emojione.toImage(rep);
                 emojiInput.value = rep;
-                location.hash='#'+rep;
+                if(loadedHash) {
+                    location.hash='#'+rep;
+                }
             }
 
             update();
@@ -183,6 +187,7 @@
                     var s = location.hash.slice(1);
                     setFromEmoji(s);
                 }
+                loadedHash = true;
             }
 
         </script>
